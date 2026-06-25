@@ -5,7 +5,795 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Molnár Jennifer modern portfolio website - Data Analyst Engineer, Computer Science Engineering student, Game Analytics, IoT, Unity, Python, SQL." />
   <title>Molnár Jennifer | Data Analyst Engineer</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #020617;
+  --bg-2: #08111f;
+  --panel: rgba(15, 23, 42, 0.74);
+  --panel-2: rgba(2, 6, 23, 0.78);
+  --glass: rgba(255, 255, 255, 0.08);
+  --border: rgba(148, 163, 184, 0.22);
+  --text: #f8fafc;
+  --muted: #b7c4d8;
+  --soft: #72809a;
+  --cyan: #22d3ee;
+  --blue: #38bdf8;
+  --purple: #a855f7;
+  --pink: #ec4899;
+  --green: #a3e635;
+  --orange: #f59e0b;
+  --shadow: 0 26px 80px rgba(0, 0, 0, 0.45);
+  --radius-xl: 34px;
+  --radius-lg: 24px;
+  --max: 1180px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.25), transparent 28%),
+    radial-gradient(circle at 80% 0%, rgba(34, 211, 238, 0.22), transparent 26%),
+    radial-gradient(circle at 70% 80%, rgba(236, 72, 153, 0.14), transparent 28%),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-glow {
+  position: fixed;
+  width: 360px;
+  height: 360px;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.page-glow-one {
+  top: 110px;
+  left: -140px;
+  background: var(--purple);
+}
+
+.page-glow-two {
+  bottom: 80px;
+  right: -120px;
+  background: var(--cyan);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(22px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(34, 211, 238, 0.95), rgba(168, 85, 247, 0.95));
+  box-shadow: 0 16px 40px rgba(34, 211, 238, 0.18);
+}
+
+.brand-text {
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links a,
+.language-toggle {
+  color: var(--muted);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover,
+.language-toggle:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.nav-links .nav-cta {
+  color: white;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.22), rgba(168, 85, 247, 0.28));
+  border: 1px solid var(--border);
+}
+
+.language-toggle {
+  min-width: 54px;
+  border: 1px solid rgba(34, 211, 238, 0.32);
+  background: rgba(34, 211, 238, 0.08);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 800;
+}
+
+.language-toggle span {
+  color: var(--cyan);
+}
+
+.menu-button {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.menu-button span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  margin: 4px auto;
+  border-radius: 99px;
+}
+
+.hero {
+  min-height: calc(100vh - 82px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 82px 22px 46px;
+  overflow: hidden;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+}
+
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0%, transparent 25%, rgba(34, 211, 238, 0.18) 26%, transparent 27%, transparent 100%),
+    linear-gradient(145deg, transparent 0%, transparent 40%, rgba(168, 85, 247, 0.22) 41%, transparent 42%, transparent 100%),
+    linear-gradient(20deg, transparent 0%, transparent 55%, rgba(34, 211, 238, 0.12) 56%, transparent 57%, transparent 100%);
+  opacity: 0.9;
+}
+
+.hero-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 34px;
+  align-items: center;
+}
+
+.tech-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.tech-icon {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+  font-weight: 900;
+  font-size: 1.25rem;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.tech-icon.vs {
+  color: #7c3aed;
+}
+
+.tech-icon.py {
+  color: #2563eb;
+}
+
+.tech-icon.sql {
+  color: #0284c7;
+}
+
+.tech-icon.unity {
+  color: #111827;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--cyan);
+  font-weight: 800;
+  font-size: 0.78rem;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(3.7rem, 9vw, 8.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  margin-bottom: 24px;
+}
+
+.headline {
+  font-size: clamp(1.45rem, 3.2vw, 2.8rem);
+  line-height: 1.08;
+  font-weight: 700;
+  max-width: 880px;
+  letter-spacing: -0.045em;
+  margin-bottom: 22px;
+}
+
+.hero-copy {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1.04rem;
+}
+
+.hero-actions,
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 19px;
+  border-radius: 999px;
+  font-weight: 800;
+  transition: transform 0.2s ease, border 0.2s ease, background 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button.primary {
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  color: #ffffff;
+  box-shadow: 0 18px 46px rgba(34, 211, 238, 0.18);
+}
+
+.button.ghost {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hero-panel {
+  position: relative;
+  padding: 34px;
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(26px);
+  overflow: hidden;
+}
+
+.hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(34, 211, 238, 0.28), transparent 28%),
+    radial-gradient(circle at 100% 70%, rgba(168, 85, 247, 0.26), transparent 30%);
+  z-index: -1;
+}
+
+.github-orb {
+  width: 190px;
+  height: 190px;
+  margin: 0 auto 24px;
+  border-radius: 48px;
+  background: radial-gradient(circle at 32% 26%, #202a36, #05070c 68%);
+  display: grid;
+  place-items: center;
+  box-shadow:
+    inset 0 0 40px rgba(255, 255, 255, 0.08),
+    0 34px 80px rgba(0, 0, 0, 0.44);
+}
+
+.orb-cat {
+  width: 110px;
+  height: 92px;
+  position: relative;
+  display: block;
+  background: #ffffff;
+  border-radius: 48% 48% 42% 42%;
+}
+
+.orb-cat::before,
+.orb-cat::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  width: 38px;
+  height: 38px;
+  background: #ffffff;
+}
+
+.orb-cat::before {
+  left: 9px;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+.orb-cat::after {
+  right: 9px;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+.hero-panel h2 {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: -0.04em;
+  margin-bottom: 6px;
+}
+
+.hero-panel > p {
+  text-align: center;
+  color: var(--muted);
+}
+
+.status-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.status-list div {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  column-gap: 12px;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.34);
+  border: 1px solid var(--border);
+}
+
+.status-list strong {
+  font-size: 0.95rem;
+}
+
+.status-list small {
+  grid-column: 2;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 7px;
+  border-radius: 99px;
+  background: var(--green);
+  box-shadow: 0 0 18px rgba(163, 230, 53, 0.8);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 22px;
+  z-index: 2;
+  color: var(--soft);
+  font-size: 0.84rem;
+}
+
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 96px 22px;
+}
+
+.section-title {
+  max-width: 780px;
+  margin-bottom: 36px;
+}
+
+.section-title.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title h2,
+.contact-shell h2 {
+  font-size: clamp(2rem, 4.8vw, 4.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+  margin-bottom: 0;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+}
+
+.glass-card,
+.skill-card,
+.project-card,
+.timeline-item,
+.contact-shell {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.045));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.glass-card {
+  padding: 28px;
+}
+
+.large-card {
+  grid-row: span 2;
+}
+
+.glass-card h3,
+.skill-card h3,
+.project-card h3,
+.timeline-item h3 {
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.glass-card p,
+.skill-card p,
+.project-card p,
+.timeline-item p,
+.contact-shell p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.glass-card p + p {
+  margin-top: 16px;
+}
+
+.dark-section {
+  max-width: none;
+  padding-left: max(22px, calc((100vw - var(--max)) / 2 + 22px));
+  padding-right: max(22px, calc((100vw - var(--max)) / 2 + 22px));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.stack-cloud {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 auto 34px;
+  max-width: 980px;
+}
+
+.stack-cloud span {
+  color: var(--text);
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.skill-card {
+  padding: 24px;
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  right: -70px;
+  bottom: -70px;
+  background: rgba(34, 211, 238, 0.11);
+}
+
+.card-number {
+  color: var(--cyan);
+  font-weight: 900;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.project-card {
+  padding: 30px;
+  min-height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card.featured {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(34, 211, 238, 0.19), transparent 32%),
+    linear-gradient(145deg, rgba(168, 85, 247, 0.18), rgba(255, 255, 255, 0.05));
+}
+
+.project-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 34px;
+}
+
+.project-tag {
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+.project-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 99px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+}
+
+.project-card h3 {
+  font-size: 1.65rem;
+}
+
+.journey-section {
+  max-width: none;
+  padding-left: max(22px, calc((100vw - var(--max)) / 2 + 22px));
+  padding-right: max(22px, calc((100vw - var(--max)) / 2 + 22px));
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  position: relative;
+}
+
+.timeline-item {
+  padding: 24px;
+}
+
+.timeline-item span {
+  color: var(--cyan);
+  font-weight: 900;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.contact-section {
+  padding-bottom: 106px;
+}
+
+.contact-shell {
+  text-align: center;
+  padding: clamp(30px, 6vw, 74px);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(34, 211, 238, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 100%, rgba(168, 85, 247, 0.17), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
+}
+
+.contact-shell p {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-actions {
+  justify-content: center;
+}
+
+.footer {
+  padding: 28px 22px;
+  text-align: center;
+  color: var(--soft);
+  border-top: 1px solid var(--border);
+  background: rgba(2, 6, 23, 0.72);
+}
+
+@media (max-width: 1050px) {
+  .hero-wrap,
+  .about-layout,
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid,
+  .timeline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .large-card {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 740px) {
+  .brand-text {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 78px;
+    left: 18px;
+    right: 18px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+    border-radius: 22px;
+    background: rgba(2, 6, 23, 0.96);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a,
+  .language-toggle {
+    width: 100%;
+    text-align: left;
+  }
+
+  .language-toggle {
+    text-align: center;
+  }
+
+  .hero {
+    padding-top: 58px;
+  }
+
+  h1 {
+    font-size: clamp(3.2rem, 16vw, 5.5rem);
+  }
+
+  .headline {
+    font-size: 1.55rem;
+  }
+
+  .tech-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+  }
+
+  .hero-panel {
+    padding: 24px;
+  }
+
+  .github-orb {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orb-cat {
+    width: 88px;
+    height: 74px;
+  }
+
+  .skills-grid,
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions,
+  .contact-actions {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .section {
+    padding-top: 74px;
+    padding-bottom: 74px;
+  }
+}
+
+</style>
 </head>
 <body>
   <div class="page-glow page-glow-one"></div>
@@ -65,7 +853,7 @@
 
           <div class="hero-actions">
             <a class="button primary" href="#projects" data-i18n="hero_projects_btn">Projektek</a>
-            <a class="button ghost" href="https://github.com/Jennay94" target="_blank" rel="noopener" data-i18n="hero_github_btn">GitHub profil</a>
+            <a class="button ghost" href="https://github.com/Morganaa-01" target="_blank" rel="noopener" data-i18n="hero_github_btn">GitHub profil</a>
           </div>
         </div>
 
@@ -122,9 +910,11 @@
         <article class="glass-card">
           <h3 data-i18n="about_card_2_title">Finnország</h3>
           <p data-i18n="about_card_2_p">
-            Cserediákként Kuopióban tanulok a Savonia University of Applied Sciences intézményében.
-            2025 szeptembere óta Finnországban kezdem meg szakmai gyakorlatomat IoT rendszerek,
-            robotprogramozás és adatelemzési módszerek területén.
+            2025 szeptembere óta cserediákként tanulok a finnországi Kuopióban,
+            a Savonia University of Applied Sciences intézményében. Tanulmányaim során IoT rendszerekkel,
+            robotprogramozással, mesterséges intelligencia alapú megoldásokkal, adatelemzési módszerekkel
+            és modern webfejlesztési technológiákkal foglalkozom. Ezeken keresztül folyamatosan fejlesztem
+            mérnöki, analitikai és fejlesztői tudásomat.
           </p>
         </article>
 
@@ -287,8 +1077,8 @@
 
         <div class="contact-actions">
           <a class="button primary" href="mailto:molnar.jennifer994@gmail.com" data-i18n="contact_email">E-mail küldése</a>
-          <a class="button ghost" href="https://github.com/Jennay94" target="_blank" rel="noopener">GitHub</a>
-          <a class="button ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="button ghost" href="https://github.com/Morganaa-01" target="_blank" rel="noopener">GitHub</a>
+          <a class="button ghost" href="https://www.linkedin.com/in/jennifermolnardata/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -298,6 +1088,227 @@
     <p data-i18n="footer_text">© <span id="year"></span> Molnár Jennifer • GitHub Pages portfólió</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+const menuButton = document.getElementById("menuButton");
+const navLinks = document.getElementById("navLinks");
+const year = document.getElementById("year");
+const languageToggle = document.getElementById("languageToggle");
+const languageLabel = document.getElementById("languageLabel");
+
+const translations = {
+  hu: {
+    nav_about: "Rólam",
+    nav_stack: "Stack",
+    nav_projects: "Projektek",
+    nav_journey: "Útvonal",
+    nav_contact: "Kapcsolat",
+
+    hero_kicker: "Data Analyst Engineer • Game Analytics • IoT",
+    hero_headline: "Adatokból döntések. Játékfejlesztésből élmény. Technológiából működő megoldás.",
+    hero_copy: "Data Analyst Engineer pozícióban dolgozom egy mobiljáték-fejlesztő vállalatnál, emellett végzős mérnökinformatikus hallgató vagyok a magyarországi Neumann János Egyetemen, valamint cserediákként tanulok Finnországban, a Savonia University of Applied Sciences intézményében.",
+    hero_projects_btn: "Projektek",
+    hero_github_btn: "GitHub profil",
+
+    panel_title: "Portfolio",
+    panel_stack: "Python • SQL • C# • Java • Unity • LiveOps • IoT • AI",
+    status_work_title: "Jelenleg dolgozom",
+    status_work_text: "Data Analyst Engineer",
+    status_finland_title: "Finnországi tanulmányok",
+    status_finland_text: "Savonia UAS, Kuopio",
+    status_trainee_title: "2026 szeptember",
+    status_trainee_text: "IoT & robotprogramozás traineeship",
+    scroll_hint: "Görgess tovább",
+
+    about_kicker: "Rólam",
+    about_title: "Dolgozó mérnökinformatikus hallgató, nemzetközi technológiai fókusszal.",
+    about_card_1_title: "Szakmai fókusz",
+    about_card_1_p1: "Munkám során adatelemzéssel, SQL-lel, Pythonnal, LiveOps folyamatokkal és üzleti döntéstámogatással foglalkozom. Fő területeim közé tartozik a játékosviselkedés, a monetizáció és a termékteljesítmény elemzése.",
+    about_card_1_p2: "Különösen érdekel az adatelemzés, a mesterséges intelligencia, az IoT technológiák, a játékfejlesztés és a szoftverfejlesztés kapcsolata.",
+    about_card_2_title: "Finnország",
+    about_card_2_p: "Cserediákként Kuopióban tanulok a Savonia University of Applied Sciences intézményében. 2026 szeptemberétől Finnországban kezdem meg szakmai gyakorlatomat IoT rendszerek, robotprogramozás és adatelemzési módszerek területén.",
+    about_card_3_title: "Motiváció",
+    about_card_3_p: "Aktív tagja vagyok a Kenji Team egyetemi motorépítő csapatnak, és több startup versenyen is részt vettem. Szeretek új dolgokat tanulni, kilépni a komfortzónámból, és folyamatosan hajt előre a kíváncsiság.",
+
+    skills_kicker: "Tech stack",
+    skills_title: "Eszközök és területek, amelyekkel dolgozom.",
+    skill_1_title: "Adat és analitika",
+    skill_1_text: "SQL, Python, riportok, dashboardok, termékteljesítmény és üzleti döntéstámogatás.",
+    skill_2_title: "Game Analytics & LiveOps",
+    skill_2_text: "Játékosviselkedés, retention, monetizáció, shop cycle és kampányhatások elemzése.",
+    skill_3_title: "Fejlesztés",
+    skill_3_text: "Python, C#, Java, Unity, webes projektek és alkalmazásfejlesztési alapok.",
+    skill_4_title: "IoT & smart rendszerek",
+    skill_4_text: "Szenzorok, automatizálás, robotprogramozás és intelligens technológiák.",
+
+    projects_kicker: "Projektek",
+    projects_title: "Kiemelt irányok",
+    project_1_title: "Mobiljáték analitika",
+    project_1_text: "Játékosviselkedés, monetizáció, retention és termékteljesítmény elemzése. Cél: adatvezérelt döntések támogatása és játékosélmény optimalizálása.",
+    project_2_title: "Smart Home / IoT rendszer",
+    project_2_text: "Szenzoradatok, dashboardok, automatizálási logikák és intelligens rendszerek fejlesztése mérnökinformatikai környezetben.",
+    project_3_title: "Játék- és alkalmazásfejlesztés",
+    project_3_text: "Unity és C# alapú fejlesztési tapasztalatok, interaktív megoldások és programozási feladatok készítése.",
+    project_4_title: "Kenji Team",
+    project_4_text: "Egyetemi motorépítő csapatban szerzett mérnöki szemlélet, csapatmunka és gyakorlati problémamegoldás.",
+
+    journey_kicker: "Útvonal",
+    journey_title: "Munka, tanulmányok és fejlődés.",
+    timeline_now: "Jelenleg",
+    timeline_now_2: "Jelenleg",
+    timeline_kuopio: "Kuopio",
+    timeline_sept: "2026 szeptember",
+    timeline_1_text: "Mobiljáték-fejlesztő vállalat • Python, SQL, LiveOps, Game Analytics, döntéstámogatás.",
+    timeline_2_title: "Neumann János Egyetem",
+    timeline_2_text: "Végzős mérnökinformatikus hallgató Magyarországon.",
+    timeline_3_text: "Cserediák Finnországban • IoT, smart technológiák és nemzetközi szakmai környezet.",
+    timeline_4_title: "Traineeship Finnországban",
+    timeline_4_text: "IoT rendszerek, robotprogramozás és adatelemzési módszerek fejlesztése.",
+
+    contact_kicker: "Kapcsolat",
+    contact_title: "Nyitott vagyok szakmai kapcsolatokra és új technológiai ötletekre.",
+    contact_text: "Adatelemzés, AI, IoT, játékfejlesztés, Unity vagy szoftverfejlesztés témában szívesen kapcsolódom.",
+    contact_email: "E-mail küldése",
+    footer_text: `© ${new Date().getFullYear()} Molnár Jennifer • GitHub Pages portfólió`
+  },
+
+  en: {
+    nav_about: "About",
+    nav_stack: "Stack",
+    nav_projects: "Projects",
+    nav_journey: "Journey",
+    nav_contact: "Contact",
+
+    hero_kicker: "Data Analyst Engineer • Game Analytics • IoT",
+    hero_headline: "Turning data into decisions, games into experiences, and technology into working solutions.",
+    hero_copy: "I currently work as a Data Analyst Engineer at a mobile game development company. I am also a final-year Computer Science Engineering student at John von Neumann University in Hungary, and an exchange student at Savonia University of Applied Sciences in Kuopio, Finland.",
+    hero_projects_btn: "Projects",
+    hero_github_btn: "GitHub profile",
+
+    panel_title: "Portfolio",
+    panel_stack: "Python • SQL • C# • Java • Unity • LiveOps • IoT • AI",
+    status_work_title: "Currently working",
+    status_work_text: "Data Analyst Engineer",
+    status_finland_title: "Studies in Finland",
+    status_finland_text: "Savonia UAS, Kuopio",
+    status_trainee_title: "September 2026",
+    status_trainee_text: "IoT & robotics programming traineeship",
+    scroll_hint: "Scroll down",
+
+    about_kicker: "About",
+    about_title: "Working Computer Science Engineering student with an international technology focus.",
+    about_card_1_title: "Professional focus",
+    about_card_1_p1: "In my work, I focus on data analysis, SQL, Python, LiveOps processes and business decision support. My main areas include player behavior, monetization and product performance analysis.",
+    about_card_1_p2: "I am especially interested in the connection between data analytics, artificial intelligence, IoT technologies, game development and software development.",
+    about_card_2_title: "Finland",
+    about_card_2_p: "As an exchange student, I study in Kuopio at Savonia University of Applied Sciences. From September 2026, I will start my traineeship in Finland, focusing on IoT systems, robotics programming and analytical methods.",
+    about_card_3_title: "Motivation",
+    about_card_3_p: "I am an active member of the Kenji Team university motorcycle building team and have participated in several startup competitions. I enjoy learning new things, stepping out of my comfort zone, and curiosity constantly drives me forward.",
+
+    skills_kicker: "Tech stack",
+    skills_title: "Tools and areas I work with.",
+    skill_1_title: "Data & Analytics",
+    skill_1_text: "SQL, Python, reports, dashboards, product performance and business decision support.",
+    skill_2_title: "Game Analytics & LiveOps",
+    skill_2_text: "Player behavior, retention, monetization, shop cycles and campaign impact analysis.",
+    skill_3_title: "Development",
+    skill_3_text: "Python, C#, Java, Unity, web projects and application development fundamentals.",
+    skill_4_title: "IoT & smart systems",
+    skill_4_text: "Sensors, automation, robotics programming and smart technologies.",
+
+    projects_kicker: "Projects",
+    projects_title: "Main focus areas",
+    project_1_title: "Mobile Game Analytics",
+    project_1_text: "Analysis of player behavior, monetization, retention and product performance. Goal: supporting data-driven decisions and optimizing player experience.",
+    project_2_title: "Smart Home / IoT System",
+    project_2_text: "Developing sensor data flows, dashboards, automation logic and smart systems in a computer engineering environment.",
+    project_3_title: "Game & Application Development",
+    project_3_text: "Experience with Unity and C# development, interactive solutions and programming tasks.",
+    project_4_title: "Kenji Team",
+    project_4_text: "Engineering mindset, teamwork and practical problem-solving experience gained in a university motorcycle building team.",
+
+    journey_kicker: "Journey",
+    journey_title: "Work, studies and professional growth.",
+    timeline_now: "Currently",
+    timeline_now_2: "Currently",
+    timeline_kuopio: "Kuopio",
+    timeline_sept: "September 2026",
+    timeline_1_text: "Mobile game development company • Python, SQL, LiveOps, Game Analytics, decision support.",
+    timeline_2_title: "John von Neumann University",
+    timeline_2_text: "Final-year Computer Science Engineering student in Hungary.",
+    timeline_3_text: "Exchange student in Finland • IoT, smart technologies and international academic environment.",
+    timeline_4_title: "Traineeship in Finland",
+    timeline_4_text: "Development of IoT systems, robotics programming and analytical methods.",
+
+    contact_kicker: "Contact",
+    contact_title: "Open to professional connections and new technology ideas.",
+    contact_text: "I am happy to connect around data analytics, AI, IoT, game development, Unity or software development.",
+    contact_email: "Send e-mail",
+    footer_text: `© ${new Date().getFullYear()} Molnár Jennifer • GitHub Pages portfolio`
+  }
+};
+
+function setLanguage(language) {
+  const selectedLanguage = translations[language] ? language : "hu";
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.getAttribute("data-i18n");
+    if (translations[selectedLanguage][key]) {
+      element.textContent = translations[selectedLanguage][key];
+    }
+  });
+
+  document.documentElement.lang = selectedLanguage;
+  languageLabel.textContent = selectedLanguage === "hu" ? "EN" : "HU";
+  localStorage.setItem("portfolioLanguage", selectedLanguage);
+}
+
+menuButton.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+  });
+});
+
+languageToggle.addEventListener("click", () => {
+  const currentLanguage = localStorage.getItem("portfolioLanguage") || "hu";
+  const nextLanguage = currentLanguage === "hu" ? "en" : "hu";
+  setLanguage(nextLanguage);
+});
+
+const savedLanguage = localStorage.getItem("portfolioLanguage") || "hu";
+setLanguage(savedLanguage);
+
+year.textContent = new Date().getFullYear();
+
+const cards = document.querySelectorAll(".glass-card, .skill-card, .project-card, .timeline-item");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.animate(
+          [
+            { opacity: 0, transform: "translateY(24px)" },
+            { opacity: 1, transform: "translateY(0)" }
+          ],
+          {
+            duration: 600,
+            easing: "cubic-bezier(.2,.8,.2,1)",
+            fill: "both"
+          }
+        );
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.16 }
+);
+
+cards.forEach((card) => observer.observe(card));
+
+</script>
 </body>
 </html>
